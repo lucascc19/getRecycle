@@ -10,7 +10,7 @@ No link abaixo você encontra o layout do projeto web.
 - Fastify
 - ReactJS
 - Prisma
-- MongoDB
+- SQLite
 ---
 Feito com ❤️ e ☕. <br/>
 ...mentira, não bebo coffee
