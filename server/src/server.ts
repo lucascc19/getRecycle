@@ -1,4 +1,5 @@
-import Fastify from 'fastify'
+import Fastify, { fastify } from 'fastify'
+import cors from '@fastify/cors'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient({
@@ -11,17 +12,16 @@ async function bootstrap(){
     logger: true,
   })
 
-  //rotas
-  fastify.get('recycle/users', async () => {
-    const recycle = await prisma.user.findMany({
-      where:{
-        name: {
-          startsWith: 'L'
-        }
-      }
-    })
+  //permite qualquer aplicação acessar o nosso banck-end
+  await fastify.register(cors, {
+    origin: true,
+  })
 
-    return { recycle }
+  //rotas
+  fastify.get('/users/count', async () => {
+    const users = await prisma.user.count()
+
+    return { users }
   })
 
   await fastify.listen({ port:3333 })
