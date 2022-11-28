@@ -20,4 +20,13 @@ model User {
   name     String
   age      Int
   createAT DateTime @default(now())
+
+  colectPointsAt colectPoints[]
+}
+
+model colectPoints {
+  id     String @id @default(cuid())
+  userId String
+
+  user User @relation(fields: [userId], references: [id])
 }
