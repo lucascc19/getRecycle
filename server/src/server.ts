@@ -19,12 +19,7 @@ async function bootstrap(){
 
   //rotas
   fastify.get('/users/count', async () => {
-    const users = await prisma.user.create({
-      data: {
-        email: 'nanda@alu.ufc.br',
-        name: 'Nanda'
-      }
-    })
+    const users = await prisma.user.count()
 
     return { users }
   })
