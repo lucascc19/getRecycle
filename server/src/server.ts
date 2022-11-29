@@ -20,6 +20,7 @@ async function bootstrap(){
   //rotas
   fastify.get('/users/count', async () => {
     const users = await prisma.user.count()
+    const points = await prisma
 
     return { users }
   })
