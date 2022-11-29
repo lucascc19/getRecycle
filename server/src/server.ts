@@ -19,12 +19,15 @@ async function bootstrap(){
 
   //rotas
   fastify.get('/users/count', async () => {
-    const users = await prisma.user.count()
+    const users = await prisma.user.create({
+      data: {
+        name: 'Lucas Oliveira',
+        email: 'lucas@alu.ufc.br',
+      }
+    })
 
     return { users }
   })
-
-
 
   await fastify.listen({ port:3333 })
 

@@ -19,4 +19,14 @@ model User {
   email    String   @unique
   name     String
   createAT DateTime @default(now())
+
+  PointsAt Points[]
+}
+
+model Points {
+  id       String @id @default(cuid())
+  userId   String
+  endereco String @unique
+
+  user User @relation(fields: [userId], references: [id])
 }
