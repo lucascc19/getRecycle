@@ -8,12 +8,6 @@ module.exports = {
       fontFamily: {
         sans: 'Nunito, sans-serif'
       },
-
-      colors: {
-        gray: {
-          900: '#121214'
-        }
-      }
     },
   },
   plugins: [],
