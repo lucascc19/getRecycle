@@ -18,16 +18,35 @@ async function bootstrap(){
   })
 
   //rotas
-  fastify.get('/users/count', async () => {
-    const users = await prisma.user.create({
+  fastify.post('/users/create', async (request) => {
+    const {email, name} = request.body;
+
+    const user = await prisma.user.create({
       data: {
-        name: 'Lucas Oliveira',
-        email: 'lucas@alu.ufc.br',
+        email: email,
+        name: name
       }
     })
 
-    return { users }
+    return { user }
+  });
+
+
+  fastify.post('/collection-points/create', async (request) => {
+    const {location, pontid, autorid} = request.body;
+
+    const collectionPoint = await prisma.points.create({
+      data: {
+	      location: location,
+        pointId:pontid,
+        authorId: autorid
+      }
+    })
+
+    return { collectionPoint }
   })
+
+
 
   await fastify.listen({ port:3333 })
 
